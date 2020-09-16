@@ -14,13 +14,13 @@ Project for Data Driven Business to predict downtime
 <p>Welke processen hebben baat bij het weten van de hersteltijd.</p>
 ## Assess situation:
 <p>Huidige situatie</p>
-<p> Welke stappen worden in de huidige situatie doorlopen wanneer er een probleem gemeld wordt?
-    Bij welke van deze stappen is volgens u de meeste winst te behalen als we het hebben over het versnellen van het oppakken van de dienstregeling?
-    Op basis van welke gegevens wordt nu de reparatietijd geschat?
-    Waarom denkt u dat monteurs vaak een te pessimistische inschatting maken van de reparatietijd?
-    Hoe lang duurt het nu gemiddeld om de gehele dienstregeling weer op te pakken, nadat de monteur het probleem verholpen heeft?
+<p> Welke stappen worden in de huidige situatie doorlopen wanneer er een probleem gemeld wordt?   
+    Bij welke van deze stappen is volgens u de meeste winst te behalen als we het hebben over het versnellen van het oppakken van de dienstregeling?  
+    Op basis van welke gegevens wordt nu de reparatietijd geschat?  
+    Waarom denkt u dat monteurs vaak een te pessimistische inschatting maken van de reparatietijd?  
+    Hoe lang duurt het nu gemiddeld om de gehele dienstregeling weer op te pakken, nadat de monteur het probleem verholpen heeft?  
     Welke partijen zijn betrokken vanaf het moment dat er een probleem gemeld dient te worden?
-    Hoe vaak komen er problemen op en bij het spoor voor, waardoor de dienstregeling ernstig gehinderd wordt?</p>
+    Hoe vaak komen er problemen op en bij het spoor voor, waardoor de dienstregeling ernstig gehinderd wordt?  </p>
 
 <p>Gewenste situatie</p>
 <p> In welke stap van het huidige proces zit volgens u het grootste verbeterpunt?
