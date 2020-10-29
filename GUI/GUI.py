@@ -1,5 +1,6 @@
 import sys
-from Model import Model
+from model import Model
+
 try:
     import Tkinter as tk
 except ImportError:
@@ -13,6 +14,7 @@ except ImportError:
     py3 = True
 
 import GUIsupport
+import model
 
 def vp_start_gui():
     '''Starting point when module is the main routine.'''
@@ -40,6 +42,8 @@ def destroy_Toplevel1():
     global w
     w.destroy()
     w = None
+def save_info():
+    tijd_info = tijd.get()
 
 class Toplevel1:
     def getValues(self):
@@ -117,7 +121,6 @@ class Toplevel1:
         self.Entry1.configure(font="TkFixedFont")
         self.Entry1.configure(foreground="#000000")
         self.Entry1.configure(insertbackground="black")
-        self.Entry1.configure(textvariable=GUIsupport.tijd)
 
         self.Entry2 = tk.Entry(self.Frame1)
         self.Entry2.grid(row=2,column=2)
