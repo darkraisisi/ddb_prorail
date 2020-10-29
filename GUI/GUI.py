@@ -1,5 +1,5 @@
 import sys
-from model import Model
+from Model import Model
 
 try:
     import Tkinter as tk
@@ -25,6 +25,7 @@ def vp_start_gui():
     GUIsupport.init(root, top)
     root.mainloop()
 
+
 w = None
 def create_Toplevel1(rt, *args, **kwargs):
     '''Starting point when module is imported by another module.
@@ -38,12 +39,12 @@ def create_Toplevel1(rt, *args, **kwargs):
     GUIsupport.init(w, top, *args, **kwargs)
     return (w, top)
 
+
 def destroy_Toplevel1():
     global w
     w.destroy()
     w = None
-def save_info():
-    tijd_info = tijd.get()
+
 
 class Toplevel1:
     def getValues(self):
@@ -60,9 +61,6 @@ class Toplevel1:
         # equip_type = 453
 
         return prio, oorz_code, oorz_group, equip_nr, equip_type
-    
-    def test(self):
-        print('test')
 
 
     def predict(self):
@@ -72,6 +70,7 @@ class Toplevel1:
             details = self.model.getDetails(prio,oorz_code, oorz_group, equip_nr, equip_type)
             print(details)
         self.Prediction.configure(text=prediction)
+
 
     def __init__(self, top=None):
         self.model = Model()
