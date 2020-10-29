@@ -20,6 +20,7 @@ except ImportError:
     py3 = True
 
 import GUIsupport
+import model
 
 def vp_start_gui():
     '''Starting point when module is the main routine.'''
@@ -47,8 +48,11 @@ def destroy_Toplevel1():
     global w
     w.destroy()
     w = None
+def save_info():
+    tijd_info = tijd.get()
 
 class Toplevel1:
+    tid 
     def __init__(self, top=None):
         '''This class configures and populates the toplevel window.
            top is the toplevel containing window.'''
@@ -89,7 +93,7 @@ class Toplevel1:
         self.Entry1.configure(font="TkFixedFont")
         self.Entry1.configure(foreground="#000000")
         self.Entry1.configure(insertbackground="black")
-        self.Entry1.configure(textvariable=GUIsupport.tijd)
+        self.Entry1.configure(textvariable= tijd)
 
         self.Entry2 = tk.Entry(self.Frame1)
         self.Entry2.place(relx=0.421, rely=0.324, height=25, relwidth=0.173)
@@ -162,6 +166,7 @@ class Toplevel1:
 
 if __name__ == '__main__':
     vp_start_gui()
+
 
 
 
