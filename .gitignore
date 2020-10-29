@@ -1,5 +1,6 @@
 # Manually added
 sap_storing_data_hu_project.csv
+sap_storing_data_hu_project_norm.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
