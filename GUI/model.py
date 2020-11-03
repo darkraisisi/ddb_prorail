@@ -4,7 +4,7 @@ import pickle
 
 class Model:
     def __init__(self):
-        filename = 'finalized_model_lin.sav'
+        filename = 'rand_for.sav'
         self.model = pickle.load(open(filename,'rb'))
         cols = ['stm_prioriteit','stm_oorz_code','stm_oorz_groep','stm_equipm_nr_*','stm_equipm_soort_*']
         self.data = pd.read_csv('sap_storing_data_hu_project_norm.csv',usecols=cols, low_memory=True)

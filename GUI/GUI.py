@@ -14,7 +14,6 @@ except ImportError:
     py3 = True
 
 import GUIsupport
-import model
 
 def vp_start_gui():
     '''Starting point when module is the main routine.'''
