@@ -47,24 +47,26 @@ def destroy_Toplevel1():
 
 class Toplevel1:
     def getValues(self):
-        prio = int(self.Entry1.get())
-        oorz_code = int(self.Entry2.get())
-        oorz_group = int(self.Entry3.get())
-        equip_nr = int(self.Entry4.get())
-        equip_type = int(self.Entry5.get())
-        
-        # prio = 9
-        # oorz_code = 133
-        # oorz_group = 1
-        # equip_nr = 0
-        # equip_type = 453
+        # prio = int(self.Entry1.get())
+        # oorz_code = int(self.Entry2.get())
+        # oorz_group = int(self.Entry3.get())
+        # equip_nr = int(self.Entry4.get())
+        # equip_type = int(self.Entry5.get())
+        # geo_code = int(self.Entry6.get())
 
-        return prio, oorz_code, oorz_group, equip_nr, equip_type
+        prio = 9
+        oorz_code = 133
+        oorz_group = 1
+        equip_nr = 0
+        equip_type = 453
+        geo_code = 9
+
+        return prio, oorz_code, oorz_group, equip_nr, equip_type, geo_code
 
 
     def predict(self):
-        prio, oorz_code, oorz_group, equip_nr, equip_type = self.getValues()
-        prediction = self.model.predict(prio,oorz_code, oorz_group, equip_nr, equip_type)
+        prio, oorz_code, oorz_group, equip_nr, equip_type, geo_code = self.getValues()
+        prediction = self.model.predict(prio,oorz_code, oorz_group, equip_nr, equip_type, geo_code)
         if self.showDetails.get():
             details = self.model.getDetails(prio,oorz_code, oorz_group, equip_nr, equip_type)
             print(details)
@@ -148,6 +150,13 @@ class Toplevel1:
         self.Entry5.configure(foreground="#000000")
         self.Entry5.configure(insertbackground="black")
 
+        self.Entry6 = tk.Entry(self.Frame1)
+        self.Entry6.grid(row=6,column=2)
+        self.Entry6.configure(background="white")
+        self.Entry6.configure(font="TkFixedFont")
+        self.Entry6.configure(foreground="#000000")
+        self.Entry6.configure(insertbackground="black")
+
         self.Text1 = tk.Text(self.Frame1)
         self.Text1.place(relx=1.095, rely=0.216, relheight=0.389, relwidth=0.368)
 
@@ -190,6 +199,12 @@ class Toplevel1:
         self.Label5.configure(background="#d9d9d9")
         self.Label5.configure(foreground="#000000")
         self.Label5.configure(text='''Equipment soort''')
+
+        self.Label6 = tk.Label(self.Frame1)
+        self.Label6.grid(row=6,column=1)
+        self.Label6.configure(background="#d9d9d9")
+        self.Label6.configure(foreground="#000000")
+        self.Label6.configure(text='''Geo code''')
 
         self.Frame2 = tk.Frame(top)
         self.Frame2.place(relx=0.025, rely=0.4, relheight=0.57
