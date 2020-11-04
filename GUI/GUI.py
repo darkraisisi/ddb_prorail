@@ -49,28 +49,29 @@ class Toplevel1:
     def getValues(self):
         # prio = int(self.Entry1.get())
         # oorz_code = int(self.Entry2.get())
-        # oorz_group = int(self.Entry3.get())
-        # equip_nr = int(self.Entry4.get())
-        # equip_type = int(self.Entry5.get())
+        # oorz_group = str(self.Entry3.get())
+        # equip_type = str(self.Entry5.get())
         # geo_code = int(self.Entry6.get())
 
-        prio = 9
-        oorz_code = 133
-        oorz_group = 1
-        equip_nr = 0
-        equip_type = 453
-        geo_code = 9
+        prio = 1
+        oorz_code = 1
+        oorz_group = 'WEER'
+        equip_type = 'WISSEL'
+        geo_code = 1
 
-        return prio, oorz_code, oorz_group, equip_nr, equip_type, geo_code
+        oorz_group, equip_type = self.model.enc_lab(oorz_group, equip_type)
+
+        return prio, oorz_code, oorz_group, equip_type, geo_code
 
 
     def predict(self):
-        prio, oorz_code, oorz_group, equip_nr, equip_type, geo_code = self.getValues()
-        prediction = self.model.predict(prio,oorz_code, oorz_group, equip_nr, equip_type, geo_code)
+        prio, oorz_code, oorz_group, equip_type, geo_code = self.getValues()
+        prediction = self.model.predict(prio,oorz_code, oorz_group, equip_type, geo_code)
+        prediction_prob = self.model.predict_prob(prio,oorz_code, oorz_group, equip_type, geo_code)
         if self.showDetails.get():
-            details = self.model.getDetails(prio,oorz_code, oorz_group, equip_nr, equip_type)
+            details = self.model.getDetails(prio,oorz_code, oorz_group, equip_type, geo_code)
             print(details)
-        self.Prediction.configure(text=prediction)
+        self.Prediction.configure(text=f'{prediction}\n{prediction_prob.to_string(index=False)}')
 
 
     def __init__(self, top=None):
@@ -113,7 +114,7 @@ class Toplevel1:
         self.wantDetails.configure(background="#d9d9d9")
         self.wantDetails.configure(activebackground="#d9d9d9")
         self.wantDetails.configure(highlightbackground="#d9d9d9")
-        self.wantDetails.grid(row=6,column=1)
+        self.wantDetails.grid(row=7,column=1)
 
         self.Entry1 = tk.Entry(self.Frame1)
         self.Entry1.grid(row=1,column=2)
@@ -136,22 +137,15 @@ class Toplevel1:
         self.Entry3.configure(foreground="#000000")
         self.Entry3.configure(insertbackground="black")
 
-        self.Entry4 = tk.Entry(self.Frame1)
-        self.Entry4.grid(row=4,column=2)
-        self.Entry4.configure(background="white")
-        self.Entry4.configure(font="TkFixedFont")
-        self.Entry4.configure(foreground="#000000")
-        self.Entry4.configure(insertbackground="black")
-
         self.Entry5 = tk.Entry(self.Frame1)
-        self.Entry5.grid(row=5,column=2)
+        self.Entry5.grid(row=4,column=2)
         self.Entry5.configure(background="white")
         self.Entry5.configure(font="TkFixedFont")
         self.Entry5.configure(foreground="#000000")
         self.Entry5.configure(insertbackground="black")
 
         self.Entry6 = tk.Entry(self.Frame1)
-        self.Entry6.grid(row=6,column=2)
+        self.Entry6.grid(row=5,column=2)
         self.Entry6.configure(background="white")
         self.Entry6.configure(font="TkFixedFont")
         self.Entry6.configure(foreground="#000000")
@@ -187,21 +181,15 @@ class Toplevel1:
         self.Label3.configure(background="#d9d9d9")
         self.Label3.configure(foreground="#000000")
         self.Label3.configure(text='''Oorzaakgroep''')
-
-        self.Label4 = tk.Label(self.Frame1)
-        self.Label4.grid(row=4,column=1)
-        self.Label4.configure(background="#d9d9d9")
-        self.Label4.configure(foreground="#000000")
-        self.Label4.configure(text='''Equipment nummer''')
         
         self.Label5 = tk.Label(self.Frame1)
-        self.Label5.grid(row=5,column=1)
+        self.Label5.grid(row=4,column=1)
         self.Label5.configure(background="#d9d9d9")
         self.Label5.configure(foreground="#000000")
         self.Label5.configure(text='''Equipment soort''')
 
         self.Label6 = tk.Label(self.Frame1)
-        self.Label6.grid(row=6,column=1)
+        self.Label6.grid(row=5,column=1)
         self.Label6.configure(background="#d9d9d9")
         self.Label6.configure(foreground="#000000")
         self.Label6.configure(text='''Geo code''')
