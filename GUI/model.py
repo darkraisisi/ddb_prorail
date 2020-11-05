@@ -24,12 +24,26 @@ class Model:
         
         x_pred = np.array([prio, oorz_code, oorz_group, equip_type,geo_code]).reshape(1, -1)
 
-        dept = self.model.decision_path(x_pred)[1][1]
-        leaf = pd.DataFrame(self.model.decision_path(x_pred)[0].toarray()[:,:dept]).apply(
-            lambda x:x.to_numpy().nonzero()[0].max(), axis=1).to_frame(name='node_id')
+        depth = self.model.decision_path(x_pred)[1][1]
+        leaf = pd.DataFrame(columns=['node_id'])
+        path = self.model.decision_path(x_pred)[0].toarray()
+        for i in range(1,len(self.model.decision_path(x_pred)[1][1:])):
+            start = self.model.decision_path(x_pred)[1][i-1]
+            end = self.model.decision_path(x_pred)[1][i]
+            leaf = leaf.append(pd.DataFrame(path[:,start:end]).apply(
+                lambda x: self.nodeScaler(x,depth), axis=1).to_frame(
+            name='node_id'))
         leaf['record_id'] = leaf.index
     
-        return leaf.merge(self.node_ys_dedup, on='node_id').drop('node_id', axis=1).sort_values(['record_id', 'duur']).sort_values('prob',ascending=False)[['duur','prob']][:10]
+        leaf = leaf.merge(self.node_ys_dedup, on='node_id').drop('node_id', axis=1)
+        duur = leaf.groupby(leaf['duur'])
+        return (duur.sum() / duur.count()).reset_index()[['duur','prob']].dropna().sort_values('prob',ascending=False)[:10]
+
+    def nodeScaler(self, x, depth):
+        x_ar = x.to_numpy().nonzero()[0]
+        flr = np.floor(x_ar / depth)
+        x = (x_ar - (flr * depth)).astype(int).max()
+        return x
 
 
     def getDetails(self, prio:int, oorz_code:int, oorz_group:int, equip_type:int, geo_code:int):
@@ -38,4 +52,4 @@ class Model:
 
 
     def enc_lab(self, ozgr:str, equipsrt:str):
-        return self.le_ozgr.transform([ozgr]), self.le_equipsrt.transform([equipsrt])
+        return self.le_ozgr.transform([ozgr])[0], self.le_equipsrt.transform([equipsrt])[0]

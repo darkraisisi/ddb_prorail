@@ -60,7 +60,7 @@ class Toplevel1:
         geo_code = 1
 
         oorz_group, equip_type = self.model.enc_lab(oorz_group, equip_type)
-
+        print(prio, oorz_code, oorz_group, equip_type, geo_code)
         return prio, oorz_code, oorz_group, equip_type, geo_code
 
 
@@ -70,7 +70,7 @@ class Toplevel1:
         prediction_prob = self.model.predict_prob(prio,oorz_code, oorz_group, equip_type, geo_code)
         if self.showDetails.get():
             details = self.model.getDetails(prio,oorz_code, oorz_group, equip_type, geo_code)
-            print(details)
+            # print(details)
         self.Prediction.configure(text=f'{prediction}\n{prediction_prob.to_string(index=False)}')
 
 
