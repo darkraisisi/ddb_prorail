@@ -47,17 +47,17 @@ def destroy_Toplevel1():
 
 class Toplevel1:
     def getValues(self):
-        # prio = int(self.Entry1.get())
-        # oorz_code = int(self.Entry2.get())
-        # oorz_group = str(self.Entry3.get())
-        # equip_type = str(self.Entry5.get())
-        # geo_code = int(self.Entry6.get())
+        prio = int(self.Entry1.get())
+        oorz_code = int(self.Entry2.get())
+        oorz_group = str(self.Entry3.get())
+        equip_type = str(self.Entry5.get())
+        geo_code = int(self.Entry6.get())
 
-        prio = 1
-        oorz_code = 1
-        oorz_group = 'WEER'
-        equip_type = 'WISSEL'
-        geo_code = 1
+        # prio = 1
+        # oorz_code = 1
+        # oorz_group = 'WEER'
+        # equip_type = 'WISSEL'
+        # geo_code = 1
 
         oorz_group, equip_type = self.model.enc_lab(oorz_group, equip_type)
         print(prio, oorz_code, oorz_group, equip_type, geo_code)
@@ -70,8 +70,9 @@ class Toplevel1:
         prediction_prob = self.model.predict_prob(prio,oorz_code, oorz_group, equip_type, geo_code)
         if self.showDetails.get():
             details = self.model.getDetails(prio,oorz_code, oorz_group, equip_type, geo_code)
-            # print(details)
-        self.Prediction.configure(text=f'{prediction}\n{prediction_prob.to_string(index=False)}')
+            self.Prediction.configure(text=f'Verwachte Duur: {int(prediction)} minuten.\n{prediction_prob.to_string(index=False)}')
+        else:
+            self.Prediction.configure(text=f'Verwachte Duur: {int(prediction)} minuten.')
 
 
     def __init__(self, top=None):
